@@ -1,0 +1,508 @@
+/* Onlinemagazine projekt stylesheet
+
+Skærm width taget fra https://www.mydevice.io/
+
+*/
+
+
+/* Import data */
+
+
+/* Root variabler*/
+:root {
+  --headercolor: #7B7C5D; /* header baggrundsfarve */
+  --boxborder: #1D71B8; /* boxborder farve */
+  --white:#ffffff;
+  --black:#000000;
+  --bodybackground: #f2f2f2;
+  --boxshadow: #ccc;
+  --infobaggrund: rgba(255, 165, 0, 1);
+  --libaggrund: #7b7c5d;
+  --lihover: #fec82e; /* menubar baggrundsfarve */
+  --linkcolor: #fff; /* anchor farve */
+
+}
+
+/* Hvis Grid-area: auto er indbygget i browser brug derfor: */
+@supports (grid-area: auto){
+  /* Mobil-first fra 0px til 504px */
+
+  body{
+    margin:0;
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-areas:
+    "nav"
+    "header"
+    "main"
+    "sidebar"
+    "footer";
+    background: var(--bodybackground) ;
+}
+  nav {position: relative;
+  }
+
+.nav{
+  grid-area: nav;
+    position: sticky;
+    top:0;
+    display: Grid; /* Nested Grid */
+    grid-template-rows: 2em 1.8em;
+    grid-template-columns:4.5em calc(100% - 8.5em) 4em ;
+    grid-template-areas:
+      "logo navbar venstre"
+      "logo . søg";
+    background: var(--headercolor);
+    z-index:5;
+
+}
+/* Logo */
+
+.logo {
+  grid-area: logo;
+  width: 4em;
+  height: 100%;
+  margin: 4px;
+}
+.logo:hover {
+  cursor: pointer;
+}
+
+    /* Navigation bar */
+  .menu{
+   grid-area: navbar;
+   display: flex;
+   justify-content: space-around;
+   top: 2px;
+   margin-bottom: 5px;
+   list-style: none;
+   margin-top: 2px;
+   padding-left: 0;
+ }
+
+  .menu a {
+     text-decoration: none;
+     font-size: 50%;
+   }
+
+
+   .menu li {
+     color: var(--linkcolor);
+     background: var(--libaggrund);
+     display: block;
+     padding: 5px; /* Test på siden */
+     position: relative;
+     text-decoration: none;
+   }
+
+   .menu li a {
+     color: var(--linkcolor);
+
+   }
+
+   .menu li:hover {
+     background: var(--lihover);
+     cursor: pointer;
+
+   }
+
+   .dropdown {
+     background: var(--lihover);
+     visibility: hidden;
+     opacity: 0;
+     min-width: 5em;
+     position: absolute;
+     transition: 1s;
+     margin-top:2px;
+     margin-left: 0;
+     display: none;
+   }
+
+   .menuitem:hover > ul,
+   .menuiten:focus-within > ul
+   .dropdown:hover {
+     visibility: visible;
+     opacity: 1;
+     display: block;
+   }
+
+   .menu li ul li {
+     clear: both;
+     width: 100%;
+   }
+/* Venstre menu bar med 2 ikoner */
+.venstre {
+  Grid-area: venstre;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+    align-items: stretch;
+}
+
+
+    /* nyhed - ikon billeder */
+    #ikonpic {
+      margin-top: 0.09em;
+      width: 2em;
+      height: 2em;
+      transition: 1s;
+      }
+
+
+    #ikonpic:hover{
+
+    }
+
+
+    /* nyhed - ikonets funktioner */
+    .nyhedsbrev {
+      right:2px;
+      border: none;
+      display:block;
+      cursor:pointer;
+      position: absolute;
+      z-index: 1;
+      }
+
+    /* nyhed - information boks */
+    .nyhedinfo {
+      display: none;
+      margin-top: 60px;
+      margin-right: 1em;
+      margin-bottom: 1.5em;
+      background-color: var(--infobaggrund);
+      border: 2px solid var(--boxborder);
+      height: auto;
+      width: 300px;
+      box-shadow: 0px 8px 16px 0px var(--boxshadow);
+
+    }
+    .luk {
+      margin-left: 5px;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+
+    /* nyhed - Usynlig knap */
+    .knap1 {
+        position: absolute;
+        top: -9999px;
+        right:0px;
+    }
+
+    .knap1:checked ~ .nyhedinfo {
+      display: block;
+
+    }
+
+
+    /* Nyhedsbrev content */
+
+
+    .nyhedinfo h3 {
+      text-align: center;
+      font-size: 1em;
+      margin-bottom: -10px
+    }
+
+    .nyhedinfo p {
+      font-size: 0.9em;
+      text-align: center;
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+    }
+
+    .email {
+      width: 100px;
+      padding: 4px;
+      margin-left: 4px;
+    }
+
+    #luk2 {
+      padding: 2px;
+    }
+    #luk2:hover{
+    }
+    /* Medlems login knap starter her! */
+    /* member - ikon billeder */
+    #logikon {
+      width: 2em;
+      height: 2em;
+      transition: 1s;
+      }
+
+
+    #logikon:hover{
+
+    }
+
+
+    /* log ind - ikonets funktioner */
+    .login {
+      right: 15px;
+      border: none;
+      display:block;
+      cursor:pointer;
+      position: absolute;
+      }
+
+    /*log ind - information boks */
+    .loginfo {
+      margin-top: 60px;
+      display: none;
+      margin-right:1em;
+      background-color: var(--infobaggrund);
+      border: 2px solid var(--boxborder);
+      height: auto;
+      width: 300px;
+      box-shadow: 0px 8px 16px 0px var(--boxshadow);
+    }
+
+
+    /*logind - Usynlig knap */
+    .knap2 {
+        position: absolute;
+        top: -9000px;
+        right: 0;
+    }
+
+    .knap2:checked ~ .loginfo {
+      display: block;
+
+    }
+
+/* log ind - content */
+    .loginfo h3 {
+      text-align: center;
+      font-size: 1em;
+      margin-bottom: -10px
+    }
+
+    .loginfo p {
+      font-size: 0.9em;
+      text-align: center;
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+    }
+
+
+    /* Søge maskine */
+    .søg { Grid-area: søg;
+      grid-row: 2;
+      margin-right: 4px;
+      margin-top: 2px;
+      display:flex;
+      justify-content: flex-end;
+    }
+
+        input[type=text] {
+          width:3.5em;
+          height: 1em;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          font-size: 1em;
+          padding: 10px 5px 10px 25px;
+          transition:1s;
+          background: url("../img/søgicon.svg");
+          background-repeat: no-repeat;
+    }
+        input[type=text]:hover {
+          width: 8em;
+          background-color: #ccc;
+          cursor:help;
+    }
+
+/* navbar slutter */
+
+
+
+/* Footer layout */
+footer { grid-area: footer;
+background: var(--bodybackground)
+}
+
+.overskrift {
+  display: flex;
+    justify-content: center;
+  margin: 0 0.5em 0 0.5em;
+  padding:0.5em 0 0.5em 0;
+  box-shadow: 0 4px 8px 0;
+  background-color: white;
+}
+
+.overskrift h2 {
+
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+
+.flexartikel {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  text-align: center;
+  overflow-x: scroll;
+  padding-bottom: 2em;
+
+  }
+  .cardteasere h3 {
+    margin: 0.5em;
+    text-align: center;
+    font-size: 1.17em;
+  }
+  .cardteasere p{
+    margin-top: -5px;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+
+  .cardteasere {
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    background-color: #7B7C5D;
+    border: 1px transparent;
+    box-shadow: 0 4px 8px 0;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 400px;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+  }
+
+#firstcard {
+  margin: 0.5em 0.5em 0.5em 0.5em;
+
+}
+
+#lastcard {
+  margin: 0.5em 0.5em 0.5em 0.5em;
+
+}
+
+
+
+  .teasereimg {
+    max-width:300px;
+    max-height: 100px;
+    width: 100%;
+
+  }
+
+  .cta{
+    text-align: center;
+    cursor: pointer;
+    width: 80%;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--lihover);
+    text-transform: uppercase;
+  }
+
+
+
+
+
+.footer {
+  z-index: 5;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: var(--headercolor);
+  position: relative;
+
+}
+
+.footer p {
+  margin:0;
+}
+
+.footer h3 {
+  margin:0;
+}
+
+
+
+
+ /* Mobil-first slutter */
+
+
+
+
+
+ }
+
+ @media screen and (min-width: 320px) {
+   .menu a {
+      font-size: 60%;
+    }
+    .nyhedinfo {
+    width: 160px ;
+  }
+    .loginfo {
+    width: 160px ;
+  }
+ }
+
+ @media screen and (min-width: 350px) {
+
+   .menu a {
+      font-size: 70%;
+    }
+    .nyhedinfo {
+    width: 170px;
+  }
+    .loginfo {
+    width: 170px;
+  }
+ }
+
+/* samsung Galaxsi 21+ */
+ @media screen and (min-width: 412px) {
+
+   .menu a {
+      font-size: 100%;
+    }
+    .nyhedinfo {
+    width: 200px;
+  }
+    .loginfo {
+    width: 200px;
+  }
+ }
+
+
+
+/* Wide-screen, fra 1024px - n+1 */
+@media screen and (min-width: 1025px) {
+
+  .nyhedinfo {
+  width: 500px;
+}
+  .loginfo {
+  width: 500px ;
+}
+
+.item-1 {
+  background:url('../img/skaering1280x350.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  }
+.item-2{
+  background:url('../img/værktøj1280x350.jpg');
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.item-3{
+  background:url('../img/bygselv1280x350.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+}
+ /* support grid  */
+}
